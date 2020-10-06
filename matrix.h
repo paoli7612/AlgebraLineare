@@ -9,6 +9,11 @@ Matrice somma(Matrice, Matrice);
 int laplace(Matrice*, int);
 int sarrus(Matrice*);
 
+int mualla(int n){
+    if (n%2 == 0) return 1;
+    else return -1;
+}
+
 class Matrice {
     public:
         int r, c;
@@ -68,19 +73,16 @@ class Matrice {
                     if (j <= x) b=1; else b=0;
                     m.mat[y][x] = mat[y+a][x+b];
                 }
-            return m.determinante();
+            return m.determinante()*mualla(2+i);
         }
 };
 
-int mualla(int n){
-    if (n%2 == 0) return 1;
-    else return -1;
-}
+
 
 int laplace(Matrice* m, int n){
     int det = 0;
     for (int i=0; i<n; i++){
-        det += m->mat[i][0]*mualla(2+i)*(m->complemento_algebrico(i,0));
+        det += m->mat[i][0]*(m->complemento_algebrico(i,0));
     }
     return det;
 }
