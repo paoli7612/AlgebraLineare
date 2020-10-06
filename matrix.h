@@ -6,6 +6,7 @@ using namespace std;
 
 class Matrice;
 int laplace(Matrice*, int);
+int sarrus(Matrice*);
 
 class Matrice {
     private:
@@ -24,13 +25,13 @@ class Matrice {
                 mat[y] = new int[c];
             }
         }
-    
+
         void stampa(){
             cout << "Matrice (" << r << "x" << c << ")" << endl;
             for (int y=0; y<r; y++){
                 for (int x=0; x<c; x++)
                     cout << mat[y][x] << "\t";
-                cout << endl;                
+                cout << endl;
             }
         }
 
@@ -39,14 +40,16 @@ class Matrice {
                 for (int x=0; x<c; x++)
                     mat[y][x] = rand()%20 - 10;
         }
-        
+
         int determinante(){
             if (!is_quadrata())
                 throw "Matrice non quadrata";
             else if (r == 1)
-                return mat[0][0]; 
+                return mat[0][0];
             else if (r == 2)
                 return (mat[0][0]*mat[1][1]) - (mat[0][1]*mat[1][0]);
+            else if(r == 3)
+                return sarrus(this);
             else {
                 return laplace(this, r);
             }
@@ -61,7 +64,7 @@ class Matrice {
                 for (int x=0; x<n; x++){
                     int a, b;
                     if (i <= y) a=1; else a=0;
-                    if (j <= x) b=1; else b=0; 
+                    if (j <= x) b=1; else b=0;
                     m.mat[y][x] = mat[y+a][x+b];
                 }
             return m.determinante();
@@ -78,9 +81,20 @@ int mualla(int n){
 }
 
 int laplace(Matrice* m, int n){
-    int determinante = 0;
+    int det = 0;
     for (int i=0; i<n; i++){
-        determinante += m->get(i,0)*mualla(2+i)*(m->complemento_algebrico(i,0));
+        det += m->get(i,0)*mualla(2+i)*(m->complemento_algebrico(i,0));
     }
-    return determinante;
+    return det;
+}
+
+int sarrus(Matrice* m){
+    int det = 0;
+    for (int i=0; i<3; i++){
+        int u = (i+1)%3, d = (i+2)%3, c = (2-i)%3;
+        det += m->get(0, i)*m->get(1, u)*m->get(2, d);
+        det -= m->get(2, i)*m->get(1, u)*m->get(0, d);
+    }
+    cout << endl << det << endl;
+    return det;
 }
