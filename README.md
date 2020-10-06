@@ -11,3 +11,5 @@
     - Determinante
         - Sarrus
         - Laplace
+    - Matrice inversa
+        - Identità + Gauß-Jordan

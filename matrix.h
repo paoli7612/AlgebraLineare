@@ -5,17 +5,18 @@
 using namespace std;
 
 class Matrice;
+Matrice somma(Matrice, Matrice);
 int laplace(Matrice*, int);
 int sarrus(Matrice*);
 
 class Matrice {
-    private:
+    public:
         int r, c;
         int **mat;
         bool is_quadrata(){
             return r == c;
         }
-    public:
+
         Matrice(int righe, int colonne){
             srand(time(NULL));
             r = righe;
@@ -69,10 +70,6 @@ class Matrice {
                 }
             return m.determinante();
         }
-
-        int get(int riga, int colonna){
-            return mat[riga][colonna];
-        }
 };
 
 int mualla(int n){
@@ -83,7 +80,7 @@ int mualla(int n){
 int laplace(Matrice* m, int n){
     int det = 0;
     for (int i=0; i<n; i++){
-        det += m->get(i,0)*mualla(2+i)*(m->complemento_algebrico(i,0));
+        det += m->mat[i][0]*mualla(2+i)*(m->complemento_algebrico(i,0));
     }
     return det;
 }
@@ -92,8 +89,8 @@ int sarrus(Matrice* m){
     int det = 0;
     for (int i=0; i<3; i++){
         int u = (i+1)%3, d = (i+2)%3, c = (2-i)%3;
-        det += m->get(0, i)*m->get(1, u)*m->get(2, d);
-        det -= m->get(2, i)*m->get(1, u)*m->get(0, d);
+        det += m->mat[0][i]*m->mat[1][u]*m->mat[2][d];
+        det -= m->mat[2][i]*m->mat[1][u]*m->mat[0][d];
     }
     cout << endl << det << endl;
     return det;
