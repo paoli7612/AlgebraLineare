@@ -42,8 +42,8 @@ class Matrice {
             return m;
         }
 
-        void stampa(){
-            cout << "Matrice (" << r << "x" << c << ")" << endl;
+        void stampa(const char* nome){
+            cout << "Matrice: " << nome << "(" << r << "x" << c << ")" << endl;
             for (int y=0; y<r; y++){
                 for (int x=0; x<c; x++)
                     cout << mat[y][x] << "\t";
@@ -104,6 +104,10 @@ int sarrus(Matrice* m){
         det += m->mat[0][i]*m->mat[1][u]*m->mat[2][d];
         det -= m->mat[2][i]*m->mat[1][u]*m->mat[0][d];
     }
-    cout << endl << det << endl;
     return det;
+}
+
+Matrice prodotto_matrici(Matrice m1, Matrice m2){
+    Matrice m(1, 1);
+    return m;
 }
