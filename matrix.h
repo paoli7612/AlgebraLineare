@@ -32,6 +32,16 @@ class Matrice {
             }
         }
 
+        Matrice trasposta(){
+            Matrice m(c, r);
+
+            for (int y=0; y<r; y++)
+                for (int x=0; x<c; x++)
+                    m.mat[x][y] = mat[y][x];
+
+            return m;
+        }
+
         void stampa(){
             cout << "Matrice (" << r << "x" << c << ")" << endl;
             for (int y=0; y<r; y++){

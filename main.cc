@@ -7,6 +7,7 @@ int main(int argc, char** argv){
     Matrice m(3, 3);
     m.random();
     m.stampa();
-    cout << endl << m.determinante();
+    Matrice c = m.trasposta();
+    c.stampa();
     return 0;
 }
