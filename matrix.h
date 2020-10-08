@@ -57,6 +57,12 @@ class Matrice {
                     mat[y][x] = rand()%20 - 10;
         }
 
+        void per(int n){
+            for (int y=0; y<r; y++)
+                for(int x=0; x<c; x++)
+                    mat[y][x] *= n;
+        }
+
         int determinante(){
             if (!is_quadrata())
                 throw "Matrice non quadrata";
