@@ -108,6 +108,15 @@ int sarrus(Matrice* m){
 }
 
 Matrice prodotto_matrici(Matrice m1, Matrice m2){
-    Matrice m(1, 1);
+    Matrice m(m1.r, m2.c);
+        
+    for (int y=0; y<m.r; y++){
+        for (int x=0; x<m.c; x++){
+            for (int p=0; p<m1.c; p++){
+                m.mat[y][x] += m1.mat[y][p]*m2.mat[p][x];
+            }
+        }
+    }
+
     return m;
 }
