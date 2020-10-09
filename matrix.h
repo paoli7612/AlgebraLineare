@@ -114,13 +114,31 @@ Matrice trasposta(Matrice m){
 }
 
 Matrice prodotto_matrici(Matrice m1, Matrice m2){
+    if (m1.c != m2.r)
+        throw "nope";
+
     Matrice m(m1.r, m2.c);
-        
+
     for (int y=0; y<m.r; y++){
         for (int x=0; x<m.c; x++){
             for (int p=0; p<m1.c; p++){
                 m.mat[y][x] += m1.mat[y][p]*m2.mat[p][x];
             }
+        }
+    }
+
+    return m;
+}
+
+Matrice somma_matrici(Matrice m1, Matrice m2){
+    if ((m1.r != m2.r) || (m1.c != m2.c))
+        throw "nope";
+
+    Matrice m(m1.r, m1.c);
+
+    for (int y=0; y<m.r; y++){
+        for (int x=0; x<m.c; x++){
+            m.mat[y][x] = m1.mat[y][x] + m2.mat[y][x];
         }
     }
 
