@@ -32,16 +32,6 @@ class Matrice {
             }
         }
 
-        Matrice trasposta(){
-            Matrice m(c, r);
-
-            for (int y=0; y<r; y++)
-                for (int x=0; x<c; x++)
-                    m.mat[x][y] = mat[y][x];
-
-            return m;
-        }
-
         void stampa(const char* nome){
             cout << "Matrice: " << nome << "(" << r << "x" << c << ")" << endl;
             for (int y=0; y<r; y++){
@@ -111,6 +101,16 @@ int sarrus(Matrice* m){
         det -= m->mat[2][i]*m->mat[1][u]*m->mat[0][d];
     }
     return det;
+}
+
+Matrice trasposta(Matrice m){
+    Matrice t(m.c, m.r);
+
+    for (int y=0; y<m.r; y++)
+        for (int x=0; x<m.c; x++)
+            t.mat[x][y] = m.mat[y][x];
+
+    return t;
 }
 
 Matrice prodotto_matrici(Matrice m1, Matrice m2){
