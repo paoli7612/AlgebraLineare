@@ -136,7 +136,15 @@ Matrice trasposta(Matrice m){
 }
 
 Matrice a_gradini(Matrice m){
+    if (m.mat[0][0] == 0)
+        throw "poi aggiungo";
     Matrice g = m.copia();
+    for (int i=1; i<g.r; i++){
+        float f = (float)g.mat[i][i-1]/(float)g.mat[0][0];
+        cout << "R" << i+1 << " + R0*" << f << endl;
+        for (int c=0; c<g.c; c++)
+            g.mat[i][c] = g.mat[i][c] - g.mat[i-1][c]*f;
+    }
 
     return g;
 }
