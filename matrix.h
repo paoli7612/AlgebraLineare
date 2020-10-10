@@ -32,6 +32,20 @@ class Matrice {
             }
         }
 
+        Matrice riga(int n){
+            Matrice r(1, c);
+            for (int i=0; i<c; i++)
+                r.mat[0][i] = mat[n][i];
+            return r;
+        }
+
+        Matrice colonna(int n){
+            Matrice c(r, 1);
+            for (int i=0; i<r; i++)
+                c.mat[i][0] = mat[i][n];
+            return c;
+        }
+
         void stampa(const char* nome){
             cout << "Matrice: " << nome << "(" << r << "x" << c << ")" << endl;
             for (int y=0; y<r; y++){
