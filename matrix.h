@@ -105,12 +105,10 @@ class Matrice {
         }
 };
 
-
-
-int laplace(Matrice* m, int n){
+int laplace(Matrice* m, int n, int colonna=0){
     int det = 0;
     for (int i=0; i<n; i++){
-        det += m->mat[i][0]*(m->complemento_algebrico(i,0));
+        det += m->mat[i][colonna]*(m->complemento_algebrico(i,colonna));
     }
     return det;
 }
@@ -118,7 +116,7 @@ int laplace(Matrice* m, int n){
 int sarrus(Matrice* m){
     int det = 0;
     for (int i=0; i<3; i++){
-        int u = (i+1)%3, d = (i+2)%3, c = (2-i)%3;
+        int u = (i+1)%3, d = (i+2)%3;
         det += m->mat[0][i]*m->mat[1][u]*m->mat[2][d];
         det -= m->mat[2][i]*m->mat[1][u]*m->mat[0][d];
     }
@@ -136,25 +134,14 @@ Matrice trasposta(Matrice m){
 }
 
 Matrice a_gradini(Matrice m){
-    if (m.mat[0][0] == 0)
-        throw "poi aggiungo";
     Matrice g = m.copia();
-    for (int i=1; i<g.r; i++){
-        cout << "Riga: " << i << endl;
-        cout << g.mat[i][i-1] <<  " " << g.mat[0][0] << endl;
-        float f = (float)g.mat[i][i-1]/(float)g.mat[0][0];
-        cout << "R" << i+1 << " + R0*" << f << endl;
-        cout << "FOR " << i << endl;
-        for (int c=0; c<g.c; c++)
-            g.mat[i][c] = g.mat[i][c] - g.mat[0][c]*f;
-    }
-
+    // ...
     return g;
 }
 
 Matrice prodotto_matrici(Matrice m1, Matrice m2){
     if (m1.c != m2.r)
-        throw "nope";
+        throw "Prodotto impossibile";
 
     Matrice m(m1.r, m2.c);
 
@@ -171,7 +158,7 @@ Matrice prodotto_matrici(Matrice m1, Matrice m2){
 
 Matrice somma_matrici(Matrice m1, Matrice m2){
     if ((m1.r != m2.r) || (m1.c != m2.c))
-        throw "nope";
+        throw "Matrici input di ordine diversi";
 
     Matrice m(m1.r, m1.c);
 
