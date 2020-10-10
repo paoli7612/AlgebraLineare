@@ -46,6 +46,14 @@ class Matrice {
             return c;
         }
 
+        Matrice copia(){
+            Matrice m(r, c);
+            for (int y=0; y<r; y++)
+                for (int x=0; x<c; x++)
+                    m.mat[y][x] = mat[y][x];
+            return m;
+        }
+
         void stampa(const char* nome){
             cout << "Matrice: " << nome << "(" << r << "x" << c << ")" << endl;
             for (int y=0; y<r; y++){
@@ -125,6 +133,12 @@ Matrice trasposta(Matrice m){
             t.mat[x][y] = m.mat[y][x];
 
     return t;
+}
+
+Matrice a_gradini(Matrice m){
+    Matrice g = m.copia();
+
+    return g;
 }
 
 Matrice prodotto_matrici(Matrice m1, Matrice m2){
