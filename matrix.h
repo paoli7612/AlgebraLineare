@@ -140,10 +140,13 @@ Matrice a_gradini(Matrice m){
         throw "poi aggiungo";
     Matrice g = m.copia();
     for (int i=1; i<g.r; i++){
+        cout << "Riga: " << i << endl;
+        cout << g.mat[i][i-1] <<  " " << g.mat[0][0] << endl;
         float f = (float)g.mat[i][i-1]/(float)g.mat[0][0];
         cout << "R" << i+1 << " + R0*" << f << endl;
+        cout << "FOR " << i << endl;
         for (int c=0; c<g.c; c++)
-            g.mat[i][c] = g.mat[i][c] - g.mat[i-1][c]*f;
+            g.mat[i][c] = g.mat[i][c] - g.mat[0][c]*f;
     }
 
     return g;
