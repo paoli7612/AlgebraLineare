@@ -14,6 +14,8 @@ Matrice prodotto_per_scalare(Matrice, float);
 void inserisci_riga(Matrice, Matrice, int);
 void stampa_matrice(Matrice);
 void randomizza(Matrice&);
+void riduci_riga(Matrice&, int);
+float pivot(Matrice m);
 
 // ___________________________________________
 
@@ -53,8 +55,11 @@ Matrice somma_matrici(Matrice m1, Matrice m2){
 
 Matrice prodotto_per_scalare(Matrice m, float s){
     for (int y=0; y<m.r; y++)
-        for (int x=0; x<m.c; x++)
+        for (int x=0; x<m.c; x++){
             m.val[y][x] *= s;
+            if (m.val[y][x] == -0)
+                m.val[y][x] = 0;
+        }
     return m;
 }
 
@@ -83,5 +88,18 @@ Matrice colonna(Matrice m, int colonna){
 }
 
 void inserisci_riga(Matrice m, Matrice r, int riga){
-    m.val[riga] = r.val[0];    
+    m.val[riga] = r.val[0];
+}
+
+void riduci_riga(Matrice &m, int r){
+    Matrice v = riga(m, r);
+    v = prodotto_per_scalare(v, 1/pivot(v));
+    inserisci_riga(m, v, r);
+}
+
+float pivot(Matrice m){
+    for (int i=0; i<m.c; i++)
+        if (m.val[0][i] != 0)
+            return m.val[0][i];
+    return 0;
 }
