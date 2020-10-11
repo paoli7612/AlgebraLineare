@@ -87,16 +87,19 @@ Matrice colonna(Matrice m, int colonna){
     return c;
 }
 
+// inserisci la riga r nella marice m al numero riga
 void inserisci_riga(Matrice m, Matrice r, int riga){
     m.val[riga] = r.val[0];
 }
 
+// moltiplica la riga r della matrice m rendendo il primo pivot = 1
 void riduci_riga(Matrice &m, int r){
     Matrice v = riga(m, r);
     v = prodotto_per_scalare(v, 1/pivot(v));
     inserisci_riga(m, v, r);
 }
 
+// ritorna il primo valore non nullo della prima riga della matrice
 float pivot(Matrice m){
     for (int i=0; i<m.c; i++)
         if (m.val[0][i] != 0)
