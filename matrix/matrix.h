@@ -122,6 +122,6 @@ Matrice prodotto_per_scalare(Matrice m, float s){
     Matrice p = m.copia();
     for (int y=0; y<m.c; y++)
         for (int x=0; x<m.r; x++)
-            m.val[y][x] *= s;
+            p.val[y][x] *= s;
     return p;
 }
