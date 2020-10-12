@@ -7,7 +7,7 @@
     - Dipendenza lineare
         - Rango di una matrice
         - Matrice a gradini
-            - Gauß Jordan
+            - Gauß Jordan (...)
     - Determinante
         - Sarrus
         - Laplace

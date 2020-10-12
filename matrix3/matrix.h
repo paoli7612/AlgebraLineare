@@ -12,7 +12,6 @@ class Matrice {
         int r, c;
         float **val;
         Matrice(int righe=1, int colonne=1){
-            cout << "NEW MATRICE" << endl;
             r = righe;
             c = colonne;
             val = new float*[righe];
