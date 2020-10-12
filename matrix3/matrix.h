@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 
 using namespace std;
 
@@ -50,13 +51,13 @@ class Matrice {
         float complemento_algebrico(int riga, int colonna){
             Matrice m(r-1, c-1);
             
-            for (int y=0; y<r; y++)
-                for (int x=0; x<c; x++){
-                    int a = y < riga, b = x < colonna;
+            for (int y=0; y<r-1; y++)
+                for (int x=0; x<c-1; x++){
+                    int a = y >= riga, b = x >= colonna;
                     m.val[y][x] = val[y+a][x+b];
                 }
 
-            return m.determinante();
+            return m.determinante() * pow(-1, riga+colonna);
         }
 
         float sarrus(){
@@ -76,7 +77,7 @@ class Matrice {
 
             // per la prima riga
             for (int i=0; i<c; i++){
-                det += i*complemento_algebrico(0,i);
+                det += val[0][i]*complemento_algebrico(0,i);
             }
 
             return det;

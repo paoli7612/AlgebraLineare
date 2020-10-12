@@ -7,7 +7,7 @@ int main(int argc, char** argv){
 
     init();
 
-    Matrice a(3, 3);
+    Matrice a(4, 4);
     a.randomizza();
     a.stampa();
 
