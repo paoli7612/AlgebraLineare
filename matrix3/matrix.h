@@ -47,6 +47,55 @@ class Matrice {
             
         }
 
+        float complemento_algebrico(int riga, int colonna){
+            Matrice m(r-1, c-1);
+            
+            for (int y=0; y<r; y++)
+                for (int x=0; x<c; x++){
+                    int a = y < riga, b = x < colonna;
+                    m.val[y][x] = val[y+a][x+b];
+                }
+
+            return m.determinante();
+        }
+
+        float sarrus(){
+            float det = 0;
+
+            for (int i=0; i<3; i++){
+                int u = (i+1)%3, d = (u+1)%3;
+                det += (val[0][i]*val[1][u]*val[2][d]);
+                det -= (val[2][i]*val[1][u]*val[0][d]);
+            }
+
+            return det;
+        }
+
+        float laplace(){
+            float det = 0;
+
+            // per la prima riga
+            for (int i=0; i<c; i++){
+                det += i*complemento_algebrico(0,i);
+            }
+
+            return det;
+        }
+
+        float determinante(){
+            if (c != r)
+                throw "Matrice non quadrata";
+            
+            if (r == 1)
+                return val[0][0];
+            else if (r == 2)
+                return val[0][0]*val[1][1] - val[0][1]*val[1][0];
+            else if (r == 3)
+                return sarrus();
+            else
+                return laplace();
+        }
+
 };
 
 class Riga: Matrice {

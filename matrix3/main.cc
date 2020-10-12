@@ -5,16 +5,14 @@ using namespace std;
 
 int main(int argc, char** argv){
 
-    int q = 2;
+    init();
 
-    Matrice a(q, q), b(q, q);
+    Matrice a(3, 3);
     a.randomizza();
-    b.randomizza();
     a.stampa();
-    b.stampa();
 
-    Matrice c = somma_matrici(a, b);
-    c.stampa();
+    float det = a.determinante();
+    cout << "Determinante: " << det << endl;
 
     return 0;
 }
