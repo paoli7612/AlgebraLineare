@@ -30,26 +30,24 @@ class Matrice {
         }
 
         void stampa(){
-            for (int y=0; y<c; y++){
-                for (int x=0; x<r; x++){
+            for (int y=0; y<r; y++){
+                for (int x=0; x<c; x++){
                     if (val[y][x] >= 0) cout << " ";
                     cout << val[y][x] << "\t";
                 }
                 cout << endl;
             }
-            cout << endl;
         }
 
         void randomizza(){
-            for (int y=0; y<c; y++)
-                for (int x=0; x<r; x++)
+            for (int y=0; y<r; y++)
+                for (int x=0; x<c; x++)
                     val[y][x] = (rand()%20)-10;
-            
         }
 
         float complemento_algebrico(int riga, int colonna){
             Matrice m(r-1, c-1);
-            
+
             for (int y=0; y<r-1; y++)
                 for (int x=0; x<c-1; x++){
                     int a = y >= riga, b = x >= colonna;
@@ -85,7 +83,7 @@ class Matrice {
         float determinante(){
             if (c != r)
                 throw "Matrice non quadrata";
-            
+
             if (r == 1)
                 return val[0][0];
             else if (r == 2)
