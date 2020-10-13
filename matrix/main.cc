@@ -5,7 +5,10 @@ using namespace std;
 
 int main(int argc, char** argv){
 
-    Matrice a(5, 5);
+    init();
+
+    Matrice a(4, 6);
+    a.randomizza();
     a.stampa();
 
     return 0;
