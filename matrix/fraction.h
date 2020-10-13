@@ -21,11 +21,18 @@ struct frac {
     }
 
     void semplifica(){
-        for (int i=n; i>1; i--)
+        for (int i=abs(n); i>1; i--){
             if ((n % i == 0) && (d % i == 0)){
                 n/=i;
                 d/=i;
             }
+        }
+    }
+
+    frac sum(frac f){
+        frac c;
+
+        return c;
     }
 };
 
@@ -55,6 +62,7 @@ class Matrice {
                 }
                 cout << endl;
             }
+            cout << endl;
         }
 
         void randomizza(){
@@ -63,10 +71,3 @@ class Matrice {
                     val[y][x].random();
         }
 };
-
-
-Matrice somma_matrici(Matrice m1, Matrice m2){
-    Matrice m(m1.r, m1.c);
-
-    return m;
-}
