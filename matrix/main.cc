@@ -5,7 +5,7 @@ using namespace std;
 
 int main(int argc, char** argv){
 
-    Matrice a(2, 2);
+    Matrice a(5, 5);
     a.stampa();
 
     return 0;
