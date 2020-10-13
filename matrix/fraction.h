@@ -10,12 +10,22 @@ struct frac {
     int n = 0, d = 0;
     
     void stampa(){
-        cout << n;
-        if (d != 1) cout << "/" << d;
+        cout << (char)(' '*(n>=0)) << n;
+        if (d != 1 && n != 0) cout << "/" << d;
     }
 
     void random(){
-        n = rand()%10 -5;
+        n = rand()%10 - 5;
+        d = rand()%5 + 1;
+        semplifica();
+    }
+
+    void semplifica(){
+        for (int i=n; i>1; i--)
+            if ((n % i == 0) && (d % i == 0)){
+                n/=i;
+                d/=i;
+            }
     }
 };
 
@@ -53,3 +63,10 @@ class Matrice {
                     val[y][x].random();
         }
 };
+
+
+Matrice somma_matrici(Matrice m1, Matrice m2){
+    Matrice m(m1.r, m1.c);
+
+    return m;
+}
