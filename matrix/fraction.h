@@ -11,7 +11,7 @@ struct frac {
     
     void stampa(){
         cout << (char)(' '*(n>=0)) << n;
-        if (d != 1 && n != 0) cout << "/" << d;
+        if (n != 0) cout << "/" << d << endl;
     }
 
     void random(){
@@ -29,8 +29,20 @@ struct frac {
         }
     }
 
-    frac sum(frac f){
+    frac per(int s){
+        frac f;
+        f.n = n*s;
+        f.d = d*s;
+        return f;
+    }
+
+    frac piu(frac f){
         frac c;
+
+        int mcm = d * f.d;
+        f.
+        c.n = a.n + n;
+        c.d = a.n;
 
         return c;
     }

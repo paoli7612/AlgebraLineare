@@ -7,11 +7,19 @@ int main(){
 
     init();
 
-    frac f;
-    f.random();
-    f.stampa();
+    frac a;
+    a.random();
+    a.stampa();
 
+    frac b;
+    b.random();
+    cout << endl;
+    b.stampa();
     cout << endl;
 
+    frac c = a.piu(b);
+    c.stampa();
+
+    cout << endl;
     return 0;
 }
