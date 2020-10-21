@@ -12,5 +12,10 @@ int main(int argc, char** argv){
     m_randomizza(m);
     m_stampa(m);
 
+    cout << endl;
+
+    Matrice m2 = m_somma(m, m);
+    m_stampa(m2);
+
     return 0;
 }
