@@ -17,6 +17,7 @@ Matrice m_somma(Matrice, Matrice);
 
 Matrice m_prodotto(Matrice, Matrice);
 Frac m_determinante(Matrice);
+Frac m_laplace(Matrice);
 
 void m_init(Matrice &m, int r, int c){
     m.r = r;
@@ -80,15 +81,23 @@ Frac m_determinante(Matrice m){
         f = f_somma(f_prodotto(m.v[0][0], m.v[1][1]), f_meno(f_prodotto(m.v[0][1], m.v[1][0])));
     //} else if (m.r == 3){ // SARRUS
     } else {
-        f = laplace(m);
+        f = m_laplace(m);
     }
 
     return f;
 }
 
-Frac laplace(Matrice m){
-    Frac f;
-    return f;
+Frac m_laplace(Matrice m){
+    Frac f, g;
+
+    // Usiamo la prima riga
+
+    f = f_somma(f_prodotto(m.v[0][0], m.v[1][1], m.v[2][2]), f_prodotto(m.v[0][1], m.v[1][2], m.v[2][0]), f_prodotto(m.v[0][2], m.v[1][0], m.v[2][1]));
+    g = f_somma(f_prodotto(m.v[2][0], m.v[1][1], m.v[0][2]), f_prodotto(m.v[2][1], m.v[1][2], m.v[0][0]), f_prodotto(m.v[2][2], m.v[1][0], m.v[0][1]));
+
+
+
+    return f_somma(f, f_meno(g));
 }
 
 Frac m_complemento_algebrico(Matrice m, int r, int c){
