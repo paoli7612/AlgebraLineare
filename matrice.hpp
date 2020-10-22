@@ -16,6 +16,7 @@ Matrice m_moltiplica(Matrice, Frac);
 Matrice m_somma(Matrice, Matrice);
 
 Matrice m_prodotto(Matrice, Matrice);
+Frac m_determinante(Matrice);
 
 void m_init(Matrice &m, int r, int c){
     m.r = r;
@@ -69,4 +70,9 @@ Matrice m_prodotto(Matrice m1, Matrice m2){
     return m;
 }
 
+Frac m_determinante(Matrice m){
+    // solo m quadrate
+    Frac f;
 
+    return f;
+}
