@@ -78,7 +78,22 @@ Frac m_determinante(Matrice m){
         f = m.v[0][0];
     else if (m.r == 2){
         f = f_somma(f_prodotto(m.v[0][0], m.v[1][1]), f_meno(f_prodotto(m.v[0][1], m.v[1][0])));
+    //} else if (m.r == 3){ // SARRUS
+    } else {
+        f = laplace(m);
     }
 
     return f;
+}
+
+Frac laplace(Matrice m){
+    Frac f;
+    return f;
+}
+
+Frac m_complemento_algebrico(Matrice m, int r, int c){
+    Matrice m1;
+    m_init(m1, m.r-1, m.c-1);
+
+    return f_prodotto(m_determinante(m1), f_mualla(r+c));
 }

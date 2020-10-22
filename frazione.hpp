@@ -1,4 +1,5 @@
 #include <iostream>
+#include <math.h>
 
 using namespace std;
 
@@ -53,5 +54,14 @@ Frac f_prodotto(Frac f1, Frac f2){
     Frac f;
     f.n = f1.n * f2.n;
     f.d = f1.d * f2.d;
+    return f;
+}
+
+Frac f_mualla(int n){
+    Frac f;
+    if (n%2 == 0)
+        f.n = 1;
+    else
+        f.n = -1;
     return f;
 }
