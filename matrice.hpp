@@ -74,5 +74,11 @@ Frac m_determinante(Matrice m){
     // solo m quadrate
     Frac f;
 
+    if (m.r == 1)
+        f = m.v[0][0];
+    else if (m.r == 2){
+        f = f_somma(f_prodotto(m.v[0][0], m.v[1][1]), f_meno(f_prodotto(m.v[0][1], m.v[1][0])));
+    }
+
     return f;
 }

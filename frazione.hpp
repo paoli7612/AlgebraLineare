@@ -15,7 +15,8 @@ void f_randomizza(Frac&);
 Frac f_somma(Frac, Frac);
 void f_moltiplica(Frac&, Frac);
 
-Frac prodotto_frac(Frac, Frac);
+
+Frac f_prodotto(Frac, Frac);
 
 void f_stampa(Frac f){
     if (f.n == 0) cout << 0;
@@ -35,6 +36,11 @@ Frac f_somma(Frac f1, Frac f2){
     if (f1.d == f2.d)
         f.n = f1.n + f2.n;
 
+    return f;
+}
+
+Frac f_meno(Frac f){
+    f.n *= -1;
     return f;
 }
 
