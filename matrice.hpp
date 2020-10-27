@@ -113,3 +113,23 @@ Frac m_complemento_algebrico(Matrice m, int r, int c){
 
     return f_prodotto(m_determinante(m1), f_mualla(r+c));
 }
+
+void m_moltiplica_riga(Matrice &m, Frac s, int r){
+    for (int i=0; i<m.c; i++)
+        m.v[r][i] = f_prodotto(m.v[r][i], s);
+}
+
+void m_somma_riga(Matrice &m, int r, int o){
+    for (int i=0; i<m.c; i++)
+        m.v[r][i] = f_somma(m.v[r][i], m.v[r][o]);
+
+}
+
+void m_gauss(Matrice &m){
+    Frac s = f_prodotto(m.v[0][0], f_menouno(m.v[1][0]));
+    s.n *= -1;
+    f_stampa(s); cout << endl;
+    m_moltiplica_riga(m, s, 1);
+    m_somma_riga(m, 1, 0);
+    m_stampa(m);
+}
