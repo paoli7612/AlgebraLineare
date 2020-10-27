@@ -24,10 +24,13 @@ int main(int argc, char** argv){
     m_randomizza(a);
     m_stampa(a);
 
-    int scalare = rand()%20 - 10;
-    cout << "Moltiplico la matrice per " << scalare << endl;
-    
-    m_moltiplica(a, scalare);
+    Frac s;
+    f_randomizza(s);
+    cout << "Moltiplico la matrice per ";
+    f_stampa(s);
+    cout << endl;
+
+    m_moltiplica(a, s);
     m_stampa(a);
 
     return 0;

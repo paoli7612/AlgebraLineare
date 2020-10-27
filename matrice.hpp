@@ -12,12 +12,13 @@ void m_init(Matrice&, int, int);
 void m_randomizza(Matrice&);
 void m_stampa(Matrice);
 
-Matrice m_moltiplica(Matrice, Frac);
+//Matrice m_moltiplica(Matrice&, Frac);
 Matrice m_somma(Matrice, Matrice);
 
 Matrice m_prodotto(Matrice, Matrice);
 Frac m_determinante(Matrice);
 Frac m_laplace(Matrice);
+Frac m_complemento_algebrico(Matrice, int, int);
 
 void m_init(Matrice &m, int r, int c){
     m.r = r;
@@ -37,7 +38,7 @@ void m_stampa(Matrice m){
     for (int y=0; y<m.r; y++){
         for (int x=0; x<m.c; x++){
             f_stampa(m.v[y][x]);
-            cout << "\t";    
+            cout << "\t";
         }
         cout << endl;
     }
@@ -66,7 +67,7 @@ Matrice m_prodotto(Matrice m1, Matrice m2){
         for (int x=0; x<m.c; x++)
             for (int p=0; p<m1.c; p++)
                 m.v[y][x] = f_somma(m.v[y][x], f_prodotto(m1.v[y][p], m2.v[p][x]));
-        
+
 
     return m;
 }
@@ -88,21 +89,27 @@ Frac m_determinante(Matrice m){
 }
 
 Frac m_laplace(Matrice m){
-    Frac f, g;
+    Frac d;
 
     // Usiamo la prima riga
 
-    f = f_somma(f_prodotto(m.v[0][0], m.v[1][1], m.v[2][2]), f_prodotto(m.v[0][1], m.v[1][2], m.v[2][0]), f_prodotto(m.v[0][2], m.v[1][0], m.v[2][1]));
-    g = f_somma(f_prodotto(m.v[2][0], m.v[1][1], m.v[0][2]), f_prodotto(m.v[2][1], m.v[1][2], m.v[0][0]), f_prodotto(m.v[2][2], m.v[1][0], m.v[0][1]));
+    for (int i=0; i<m.c; i++){
+        d = f_somma(d, f_prodotto(m.v[0][i], m_complemento_algebrico(m, 0, i)));
+    }
 
-
-
-    return f_somma(f, f_meno(g));
+    return d;
 }
 
 Frac m_complemento_algebrico(Matrice m, int r, int c){
     Matrice m1;
     m_init(m1, m.r-1, m.c-1);
+
+    for (int y=0; y<m1.r; y++)
+        for (int x=0; x<m1.c; x++){
+            int x1 = x + 1*(x>=c);
+            int y1 = y + 1*(y>=r);
+            m1.v[y][x] = m.v[y1][x1];
+        }
 
     return f_prodotto(m_determinante(m1), f_mualla(r+c));
 }
