@@ -114,3 +114,8 @@ Frac f_menouno(Frac f){
     d.d = f.n;
     return d;
 }
+
+Frac f_neg(Frac f){
+    f.n *= -1;
+    return f;
+}

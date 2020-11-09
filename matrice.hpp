@@ -127,8 +127,9 @@ void m_somma_riga(Matrice &m, int r, int o){
 
 void m_gauss(Matrice &m){
     Frac s = f_prodotto(m.v[0][0], f_menouno(m.v[1][0]));
-    s.n *= -1;
+    s = f_neg(s);
     f_stampa(s); cout << endl;
+
     m_moltiplica_riga(m, s, 1);
     m_somma_riga(m, 1, 0);
     m_stampa(m);
