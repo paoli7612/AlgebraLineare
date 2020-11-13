@@ -14,8 +14,8 @@ Complex new_complex(float real, float immaginary){
     return c;
 }
 
-void print_complex(Complex c){
-    cout << c.real << " + " << c.immaginary << "i";
+void stampa(Complex c){
+    cout << "(" << c.real << ", " << c.immaginary << ")";
 }
 
 Complex coniugato(Complex a){
@@ -32,11 +32,13 @@ Complex somma(Complex a, Complex b){
     return c;
 }
 
-Complex prodotto(Complex a, Complex b){
-    Complex c;
-
-    c.immaginary = (a.real*b.real) - (a.immaginary*b.immaginary);
-    c.real = (a.real*b.immaginary) + (a.immaginary*b.real);
-
-    return c;
+Complex prodotto(Complex ca, Complex cb){
+    Complex cc;
+    int a = ca.real;
+    int b = ca.immaginary;
+    int c = cb.real;
+    int d = cb.immaginary;
+    cc.real = (a*c) - (b*d);
+    cc.immaginary = (a*d) + (b*c);
+    return cc;
 }

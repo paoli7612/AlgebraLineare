@@ -7,25 +7,26 @@ int main(int argc, char** argv){
 
     Complex a = new_complex(2, 3);
 
-    print_complex(a);
+    stampa(a);
     cout << endl;
      
-    print_complex(coniugato(a));
+    stampa(coniugato(a));
     cout << endl;
 
-    print_complex(somma(a, coniugato(a)));
+    stampa(somma(a, coniugato(a)));
     cout << endl;
 
-    print_complex(prodotto(a, coniugato(a)));
+    stampa(prodotto(a, coniugato(a)));
     cout << endl;
 
     cout << "radice di meno uno" << endl;
     Complex u = new_complex(1, 0);
-    print_complex(u);
+    stampa(u);
     cout << " * ";
-    print_complex(u);
+    stampa(u);
     cout << endl;
-    print_complex(prodotto(u, u));
+    stampa(prodotto(u, u));
+    cout << endl;
 
     return 0;
 }
