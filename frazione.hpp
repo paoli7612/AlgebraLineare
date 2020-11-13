@@ -41,6 +41,8 @@ void f_stampa(Frac f){
 
 void f_randomizza(Frac &f){
     f.n = rand()%10;
+    f.d = (rand()%5)+1;
+    f_semplifica(f);
 }
 
 Frac f_somma(Frac f1, Frac f2){
