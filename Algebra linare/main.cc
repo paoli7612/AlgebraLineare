@@ -9,7 +9,7 @@ using namespace std;
 
 int valore_casuale()
 {
-	return rand()%20 - 10;
+	return rand()%19 - 9;
 }
 
 // Descirttore matrice
@@ -23,6 +23,8 @@ struct insieme_t {
 	int N;					// Max elementi
 	matrice_t* matrici;
 	int elementi;
+	
+	int max_righe;
 };
 
 // Inizializza insieme vuoto a max n matrici
@@ -31,13 +33,14 @@ void init(struct insieme_t &insieme, int n)
 	insieme.matrici = new matrice_t[n];
 	insieme.N = n;
 	insieme.elementi = 0;
+	insieme.max_righe = 0;
 }
 
 stampa_matrice(const struct matrice_t &matrice)
 {
 	for (int y=0; y<matrice.righe; y++){
 		for (int x=0; x<matrice.colonne; x++)
-			cout << matrice.valori[y][x] << " ";
+			cout << matrice.valori[y][x] << "\t";
 		cout << endl;
 	}
 }
@@ -52,6 +55,29 @@ void stampa_insieme(const struct insieme_t &insieme)
 	}
 }
 
+// Stampa la lista di matrici in orizzontale
+void stampa_insieme_in_orizzontale(const struct insieme_t &insieme, const int offset=1)
+{
+	
+	for (int r=0; r<insieme.max_righe; r++) // Per ogni riga
+	{
+		for (int i=0; i<insieme.elementi; i++) // Per ogni matrice
+		{
+			for (int j=0; j<insieme.matrici[i].colonne; j++) // Stampo la riga (se presente)
+				if (insieme.matrici[i].righe > r)
+					cout << insieme.matrici[i].valori[r][j] << "\t";
+				else
+					cout << "\t";
+			
+			for (int k=0; k<offset; k++)
+				cout << "\t";	
+		}
+		cout << endl;
+	}
+	
+	cout << endl;
+}
+
 // Chiede le dimensioni di una nuova matrice e la aggiunge all'insieme
 void crea_matrice(struct insieme_t &insieme)
 {
@@ -61,6 +87,9 @@ void crea_matrice(struct insieme_t &insieme)
 	cin >> matrice->righe;
 	cout << "numero colonne: ";
 	cin >> matrice->colonne;
+	
+	if (insieme.max_righe < matrice->righe)
+		insieme.max_righe = matrice->righe;
 	
 	matrice->valori = new int*[matrice->righe];
 	for (int y=0; y<matrice->righe; y++){
@@ -98,7 +127,8 @@ int main(){
 		"1. Crea matrice\n"
 		"2. Stampa insieme\n"
 		"3. Rimuovi ultima matrice\n"
-		"4. Imposta valori casuali\n";
+		"4. Imposta valori casuali\n"
+		"5. Stampa insieme orizzontale\n";
 		
 		
 	bool run = true;
@@ -129,6 +159,11 @@ int main(){
 				cout << "Inserisci l'indice della matrice da modificare: ";
 				cin >> i;
 				mescola_matrice(insieme, i);
+			
+			case 5: // Stampa insieme orizzontale
+				stampa_insieme_in_orizzontale(insieme);
+				break;
+		
 		}
 	}
 	
